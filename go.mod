@@ -1,4 +1,4 @@
-module 2108a-zg5/week3/day20/framework
+module github.com/1zhangfei/framework
 
 go 1.21.4
 
