@@ -2,6 +2,7 @@ package grpc
 
 import (
 	"fmt"
+	_ "github.com/mbobakov/grpc-consul-resolver" // It's important
 	"google.golang.org/grpc"
 )
 
