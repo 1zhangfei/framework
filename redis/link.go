@@ -1,9 +1,9 @@
 package redis
 
 import (
-	"2108a-zg5/week3/day20/framework/config"
 	"context"
 	"encoding/json"
+	"github.com/1zhangfei/framework/config"
 	"github.com/go-redis/redis/v8"
 	"github.com/spf13/viper"
 	"time"

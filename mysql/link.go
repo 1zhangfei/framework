@@ -1,9 +1,9 @@
 package mysql
 
 import (
-	"2108a-zg5/week3/day20/framework/config"
 	"encoding/json"
 	"fmt"
+	"github.com/1zhangfei/framework/config"
 	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"

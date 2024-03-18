@@ -1,10 +1,10 @@
 package grpc
 
 import (
-	"2108a-zg5/week3/day20/framework/config"
-	"2108a-zg5/week3/day20/framework/consul"
 	"encoding/json"
 	"fmt"
+	"github.com/1zhangfei/framework/config"
+	"github.com/1zhangfei/framework/consul"
 	"github.com/spf13/viper"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"
