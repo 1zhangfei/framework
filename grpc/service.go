@@ -30,7 +30,7 @@ func getGrpcConfig(address string) (*Cnf, error) {
 		return nil, err
 	}
 
-	dataId := viper.GetString("Grpc.DaraId")
+	dataId := viper.GetString("Grpc.DataId")
 	group := viper.GetString("Grpc.Group")
 
 	if err != nil {
