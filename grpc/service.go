@@ -9,6 +9,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"
+	"google.golang.org/grpc/reflection"
 	"log"
 	"math/rand"
 	"net"
@@ -61,8 +62,11 @@ func Service(address string, Register func(s *grpc.Server)) error {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	// 服务注册
-	err = consul.GetRegister(conf.App.Ip, conf.Name, port)
 	s := grpc.NewServer()
+
+	err = consul.GetRegister(conf.App.Ip, conf.Name, port)
+
+	reflection.Register(s)
 	// 健康检测
 	grpc_health_v1.RegisterHealthServer(s, health.NewServer())
 
