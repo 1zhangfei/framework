@@ -96,26 +96,26 @@ func Exists(Address, key string) (bool, error) {
 }
 
 func Lock(address, key string, val interface{}, duration time.Duration, isReadOnly bool) (bool, error) {
-	init, err := WhitRedislInit(address, func(cli *redis.Client) (string, error) {
-		for {
-			result, err := cli.SetNX(context.Background(), key, val, duration).Result()
-			if err != nil {
-				return "", err
+	res := false
+	_, err := WhitRedislInit(address, func(cli *redis.Client) (string, error) {
+		if !isReadOnly {
+			for {
+				result, err := cli.SetNX(context.Background(), key, val, duration).Result()
+				if err != nil {
+					return "", err
+				}
+				res = true
+				if result {
+					return "", nil
+				}
 			}
-			isReadOnly = true
-			if !result {
-				return "1", err
-			}
-		}
 
+		}
+		re, err := cli.SetNX(context.Background(), key, val, duration).Result()
+		res = re
+		return "", err
 	})
-	if err != nil {
-		return false, err
-	}
-	if init == "1" {
-		return true, nil
-	}
-	return false, err
+	return res, err
 }
 
 func UnLock(address, key string) error {
